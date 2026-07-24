@@ -45,6 +45,8 @@ info: The attacker has to enable ip forwarding. This allows the attacker’s mac
 
 After becoming the Middle Point the victims traffic passes through the attackers machine. The attacker forwards the packets to the real gateway and can observe or analyze the unencrypted traffic (e.g HTTP). The gateway responds back to the attacker and the attacker forwards that to the victim.
 
+A better way to enhance the chance to not get detected or blocked by other Wlan rules is to poison the router aswell. By sending arp replies to the router and pretending to be the victim.
+
 ## Why this works only in IPv4
 ARP exists only in IPv4 networks.
 IPv6 uses the Neighbor Discovery Protocol (NDP), which is more complex and not compatible with ARP spoofing techniques.
