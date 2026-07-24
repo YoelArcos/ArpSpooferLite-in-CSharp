@@ -50,3 +50,11 @@ A better way to enhance the chance to not get detected or blocked by other Wlan 
 ## Why this works only in IPv4
 ARP exists only in IPv4 networks.
 IPv6 uses the Neighbor Discovery Protocol (NDP), which is more complex and not compatible with ARP spoofing techniques.
+
+## ARP Packets in Detail 
+Coming soon...
+
+## How the Code Works
+Coming soon...
+
+SOURCE CODE IS UNDER CONSTRUCTION.
