@@ -3,6 +3,25 @@ In this repository I created a lightweight version of an Arp Spoofer. To create 
 
 In this project I learned a lot about how adress resolution works, how network devices map IP adresses to MAC and how traffic flows inside a LAN. 
 
+# Installation (Usage Guide)
+1. Install NPcap (Packet Library & Driver): [Npcap: Windows Packet Capture Library & Driver](https://npcap.com/) (select WinPcap-API-Compatibility! while going through the installation wizard)
+(**Windows does not provide raw packet access natively**).
+2. Clone or get the latest release containing the .exe file for windows.
+`git clone https://github.com/YoelArcos/ArpSpooferLite-in-CSharp.git
+cd ArpSpooferLite-in-CSharp
+dotnet build -c Release`
+3. Enable IP Forwarding (explained later in this README) **windows**: `Set-NetIPInterface -Forwarding Enabled`
+for **linux** `sudo sysctl -w net.ipv4.ip_forward=1`
+4. Start .exe file with this command `ArpSpooferLite.exe <victim IP> <router IP>`
+
+To end the program just press the `Q`-Key and it will restore automatically all arp tables. 
+
+(Note: ARP Spoofing only works in the same Layer-2 network segment)
+
+# Education
+Coming soon...
+
+
 ## Ip vs MAC quick intro
 MAC	addresses	identify	who	you	are,	IP	addresses	identify	where	you	are,
 and	ARP	tables	manage	the	mapping	between	who	you	are	and	where	you
@@ -43,9 +62,14 @@ Example image from book: Ethical hacking a hans on introduction to breaking in b
 
 info: The attacker has to enable ip forwarding. This allows the attacker’s machine to pass packets through to the real gateway, keeping the victim online while traffic flows through the attacker.
 
+for **linux** `sudo sysctl -w net.ipv4.ip_forward=1`
+for **windows** `Set-NetIPInterface -Forwarding Enabled`
+
 After becoming the Middle Point the victims traffic passes through the attackers machine. The attacker forwards the packets to the real gateway and can observe or analyze the unencrypted traffic (e.g HTTP). The gateway responds back to the attacker and the attacker forwards that to the victim.
 
-A better way to enhance the chance to not get detected or blocked by other Wlan rules is to poison the router aswell. By sending arp replies to the router and pretending to be the victim.
+A better way to enhance the chance to not get detected or blocked by other Wlan rules is to poison the router aswell. By sending arp replies to the router and pretending to be the victim. (This is the second stage of poisoning in an arp spoofing attack.)
+
+After finishing the work the arp tables should be restored to the default values (the correct mappings of each device, so that the victim doesn't lose internet connection.)
 
 ## Why this works only in IPv4
 ARP exists only in IPv4 networks.
