@@ -23,11 +23,6 @@ Coming soon...
 
 
 ## Ip vs MAC quick intro
-MAC	addresses	identify	who	you	are,	IP	addresses	identify	where	you	are,
-and	ARP	tables	manage	the	mapping	between	who	you	are	and	where	you
-are	on	the	network.	In an	ARP	spoofing	attack,	we	pretend	to	be	someone
-else
-
 MAC adresses identify who you are, IP adresses identify where you are on the network
 and ARP tables manae the mapping between who you are and where you are on the network.
 (In an ARP spoofing attack, we pretend to be someone else).
@@ -57,7 +52,7 @@ If the victim accepts this fake entry, it will start sending traffic meant for t
 simplified presentation
 <img width="998" height="582" alt="An example of a spoofing attack involving a postal worker" src="https://github.com/user-attachments/assets/9ff36a74-011e-4538-83ff-caa15cd516cf" />
 
-Example image from book: Ethical hacking a hans on introduction to breaking in by Daniel G. Graham
+Example image from book: Ethical hacking a hands on introduction to breaking in by Daniel G. Graham
 <img width="974" height="759" alt="The first stage of an ARP spoofing attack" src="https://github.com/user-attachments/assets/21467e17-1685-4453-ba75-dfdf8ca32c90" />
 
 info: The attacker has to enable ip forwarding. This allows the attacker’s machine to pass packets through to the real gateway, keeping the victim online while traffic flows through the attacker.
