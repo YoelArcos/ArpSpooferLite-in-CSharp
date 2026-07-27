@@ -63,6 +63,8 @@ for **windows** `Set-NetIPInterface -Forwarding Enabled`
 After becoming the Middle Point the victims traffic passes through the attackers machine. The attacker forwards the packets to the real gateway and can observe or analyze the unencrypted traffic (e.g HTTP). The gateway responds back to the attacker and the attacker forwards that to the victim.
 
 A better way to enhance the chance to not get detected or blocked by other Wlan rules is to poison the router aswell. By sending arp replies to the router and pretending to be the victim. (This is the second stage of poisoning in an arp spoofing attack.)
+<img width="1000" height="780" alt="image" src="https://github.com/user-attachments/assets/84e9a40a-bbc7-468a-8931-af12863c65e7" />
+
 
 After finishing the work the arp tables should be restored to the default values (the correct mappings of each device, so that the victim doesn't lose internet connection.)
 
